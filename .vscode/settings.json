@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "new": "cpp",
+        "*.hppm": "cpp",
+        "cstdint": "cpp",
+        "array": "cpp",
+        "string": "cpp"
+    }
+}
