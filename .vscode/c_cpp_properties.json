@@ -14,7 +14,8 @@
             "compilerPath": "C:\\MinGW\\bin\\g++.exe",
             "cStandard": "gnu11",
             "cppStandard": "gnu++14",
-            "intelliSenseMode": "windows-gcc-x86"
+            "intelliSenseMode": "windows-gcc-x86",
+            "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
     "version": 4

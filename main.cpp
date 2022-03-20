@@ -4,12 +4,12 @@
     #define __AVR_ATmega328P__
 #endif
 
-#include "include/IODataUSART.hpp"
-#include "include/Config_Interrupts.hpp"
-#include "include/Display_LCD.hpp"
+#include "include/main.hpp"
 
 int main() {
-    
+    SetSpeedUSART(12);
+    ConfigureUSART();    
+    ConfigureDisplayLCD();
     while(true) {
         
     }

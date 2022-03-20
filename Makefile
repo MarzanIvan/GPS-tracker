@@ -3,6 +3,9 @@ NameOfProgram = main
 VersionMCU = atmega328p
 Compiler = avr-g++
 
+Clean:
+	clean.cmd
+
 CreateObjectsHpps: 
 	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c implementations/Config_Interrupts.cpp
 	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c implementations/IODataUSART.cpp
