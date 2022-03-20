@@ -7,9 +7,11 @@
 #include "include/main.hpp"
 
 int main() {
+    ConfigurePorts();
     SetSpeedUSART(12);
     ConfigureUSART();    
     ConfigureDisplayLCD();
+    EnableGlobalEnterrupt();
     while(true) {
         
     }

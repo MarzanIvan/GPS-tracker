@@ -1,9 +1,9 @@
 #ifndef MAIN_HPP
 #define MAIN_HPP
 
-#include "include/IODataUSART.hpp"
-#include "include/Config_Interrupts.hpp"
-#include "include/Display_LCD.hpp"
+#include "IODataUSART.hpp"
+#include "Config_Interrupts.hpp"
+#include "Display_LCD.hpp"
 
 inline void ConfigureUSART() {
     EnableIO_USART();
