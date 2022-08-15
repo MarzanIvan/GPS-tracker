@@ -1,7 +1,7 @@
 #include "../include/Display_LCD.hpp"
 
 void Send4BitsToLCD( unsigned char data ) {
-    PORTD |= (1<<3);
+    PORTD |= (1 << PORTB3);
 
     _delay_us(50);
     PORTD &= 0b00001111;
@@ -28,7 +28,7 @@ void SetPositionShowingLCD( unsigned int X, unsigned int Y ) {
     SendBiteToLCD(Adress, COMMAND);
 }
 
-void ClearDisplayLCD() {
+void ClearDisplayLCD(void) {
     SendBiteToLCD(0b00000001, COMMAND);
     _delay_us(1500);
 }

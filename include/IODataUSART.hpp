@@ -7,25 +7,50 @@
 
 #include <avr/io.h>
 
+#define USART_SpeedIOHighRegister UBRR0H
+#define USART_SpeedIOLowRegister UBRR0L
+
 inline void SetSpeedUSART( unsigned int SpeedIO ) {
-    UBRR0H = (unsigned char) (SpeedIO >> 8);
-    UBRR0L = (unsigned char) SpeedIO;
+    USART_SpeedIOHighRegister = (unsigned char) (SpeedIO >> 8);
+    USART_SpeedIOLowRegister = (unsigned char) SpeedIO;
 }
+
+#define USART_ReceiverEnableBit RXEN0
+#define USART_TransmitterEnableBit TXEN0
+#define USART_ControlAndStatusRegisterB UCSR0B
 
 inline void EnableIO_USART() {
-    UCSR0B = (1 << RXEN0) | (1 << TXEN0);
+    USART_ControlAndStatusRegisterB = (1 << USART_ReceiverEnableBit) | (1 << USART_TransmitterEnableBit);
 }
+
+#define USART_ReceiverInterruptEnableBit RXCIE0
 
 inline void EnableInterruptReadUSART() {
-    UCSR0B |= (1 << RXCIE0);
+    USART_ControlAndStatusRegisterB |= (1 << USART_ReceiverInterruptEnableBit);
 }
+
+#define USART_ControlAndStatusRegisterA UCSR0A
+#define USART_DoubleTransmissionSpeedEnableBit U2X0
 
 inline void DoubleTransmissionSpeedUSART() {
-    UCSR0A |= (1 << U2X0);
+    USART_ControlAndStatusRegisterA |= (1 << USART_DoubleTransmissionSpeedEnableBit);
 }
 
+#define USART_ControlAndStatusRegisterC UCSR0C
+#define USART_ModeSelectBit0 UMSEL00
+#define USART_ModeSelectBit1 UMSEL01
+#define USART_StopBitsSelectBit USBS0
+#define USART_ValueToEnableTwoStopBits 1
+#define USART_SizeCharacterOfBaudBit0 UCSZ00
+#define USART_SizeCharacterOfBaudBit1 UCSZ01
+#define USART_SizeCharacterOfBaudBit2 UCSZ02
+#define USART_SynchronousModeEnableBits (0 << USART_ModeSelectBit0) | (0 << USART_ModeSelectBit1)
+#define USART_BitsToEnable8BitsSizeOfBaud (1 << USART_SizeCharacterOfBaudBit0) | (1 << USART_SizeCharacterOfBaudBit1) | (1 << USART_SizeCharacterOfBaudBit2)
+
 inline void ConfigureIO_USART() {
-    UCSR0C = (0 << UMSEL00) | (0 << UMSEL01) | (1 << USBS0) | (1 << UCSZ00) | (1 << UCSZ01) | (1 << UCSZ02);
+    USART_ControlAndStatusRegisterC |= USART_SynchronousModeEnableBits;
+    USART_ControlAndStatusRegisterC |= (USART_ValueToEnableTwoStopBits << USART_StopBitsSelectBit);
+    USART_ControlAndStatusRegisterC |= USART_BitsToEnable8BitsSizeOfBaud;
 } 
 
 void TransmitSymbol_By_USART( unsigned char Symbol );
