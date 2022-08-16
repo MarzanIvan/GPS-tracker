@@ -7,6 +7,9 @@
 
 #include <avr/io.h>
 
+#define USART_DataRegister UDR0
+#define USART_DataRegisterEmptyFlag UDRE0
+
 #define USART_SpeedIOHighRegister UBRR0H
 #define USART_SpeedIOLowRegister UBRR0L
 
