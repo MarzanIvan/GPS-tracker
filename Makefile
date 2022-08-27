@@ -7,9 +7,9 @@ Clean:
 	clean.cmd
 
 CreateObjectsHpps: 
-	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c implementations/Config_Interrupts.cpp
-	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c implementations/IODataUSART.cpp
-	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c implementations/Display_LCD.cpp
+	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c src/Config_Interrupts.cpp
+	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c src/IODataUSART.cpp
+	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c src/Display_LCD.cpp
 
 Build: $(NameOfProgram).cpp Config_Interrupts.o IODataUSART.o Display_LCD.o
 	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c $(NameOfProgram).cpp

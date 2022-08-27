@@ -20,15 +20,32 @@ void SendBiteToLCD( unsigned int data, ModesSending ModeSending ) {
     }
     Send4BitsToLCD(data >> 4);
     Send4BitsToLCD(data);
-
 }
 
-void SetPositionShowingLCD( unsigned int X, unsigned int Y ) {
+void SetCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int Y ) {
     char Adress  = (0x40 * Y + X) | 0b10000000;
     SendBiteToLCD(Adress, COMMAND);
 }
 
-void ClearDisplayLCD(void) {
+#define MaxSizeOfStringOfLCD 15
+#define MaxIndexOfStringOfLCD 1
+
+void SetNextCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int Y ) {
+    if (X < MaxSizeOfStringOfLCD) {
+        X++;
+    } 
+    else if (Y < MaxIndexOfStringOfLCD) {
+        Y++;
+        X = 0;
+    }
+    else {
+        Y = 0;
+        X = 0;
+    }
+    SetCharacterDisplayPositionOnLCD(X,Y);
+}
+
+void ClearLCDDisplay(void) {
     SendBiteToLCD(0b00000001, COMMAND);
     _delay_us(1500);
 }

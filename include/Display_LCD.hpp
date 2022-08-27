@@ -20,7 +20,9 @@ void SendBiteToLCD( unsigned int data, ModesSending ModeSending );
 
 void SendStringToLCD( const char *String );
 
-void SetPositionShowingLCD( unsigned int X, unsigned int Y );
+void SetCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int Y );
+
+void SetNextCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int Y );
 
 inline void ConfigureDisplayLCD() {
     _delay_ms(15);
@@ -39,6 +41,6 @@ inline void ConfigureDisplayLCD() {
     SendBiteToLCD(0b00000110, COMMAND);
 }
 
-void ClearDisplayLCD();
+void ClearLCDDisplay();
 
 #endif

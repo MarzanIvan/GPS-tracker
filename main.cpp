@@ -11,7 +11,7 @@ int main() {
     SetSpeedUSART(12);
     ConfigureUSART();    
     ConfigureDisplayLCD();
-    EnableGlobalEnterrupt();
+    EnableGlobalEnterrupt(); 
     while(true) {
         
     }

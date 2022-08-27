@@ -5,8 +5,8 @@
 short unsigned int X,Y = 0;
 
 ISR(USART_RX_vect) {
-    SetPositionShowingLCD(X,Y);
-    SendBiteToLCD(UDR0, DATA);  
+    SetCharacterDisplayPositionOnLCD(X,Y);
+    SendBiteToLCD(USART_DataRegister, DATA);  
     if (X < 15) {
         X++;
     } else if (Y < 1) {
