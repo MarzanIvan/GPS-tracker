@@ -4,7 +4,7 @@
     #define __AVR_ATmega328P__
 #endif
 
-#include "include/main.hpp"
+#include "../include/main.hpp"
 
 int main() {
     ConfigurePorts();

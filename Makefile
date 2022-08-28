@@ -1,17 +1,25 @@
 
 NameOfProgram = main
-VersionMCU = atmega328p
+VersionOfMCU = atmega328p
 Compiler = avr-g++
+FolderOfBuilding = Build
+FolderOfSourceCode = src
+FolderOfHeaders = include
+CommandForCleaning = rm
+
+SourceCode = main.cpp Config_Interrupts.cpp IODataUSART.cpp Display_LCD.cpp
+SOURCE = $(addprefix $(FolderOfSourceCode)/,$(SourceCode))
+OBJECTS = $(addprefix $(FolderOfBuilding)/, $(SourceCode:.cpp=.o))
+
+Build/%.o: src/%.*
+	$(Compiler) -g -Os -mmcu=$(VersionOfMCU) -c $< -o $@
+
+FolderOfBuilding:
+	mkdir Build
+
+Build: FolderOfBuilding $(OBJECTS) 
+	$(Compiler) -g -mmcu=$(VersionOfMCU) -o Build/$(NameOfProgram).elf $(OBJECTS)
+	avr-objcopy -j .text -j .data -O ihex Build/$(NameOfProgram).elf -o $(FolderOfBuilding)/$(NameOfProgram).hex 	
 
 Clean:
-	clean.cmd
-
-CreateObjectsHpps: 
-	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c src/Config_Interrupts.cpp
-	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c src/IODataUSART.cpp
-	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c src/Display_LCD.cpp
-
-Build: $(NameOfProgram).cpp Config_Interrupts.o IODataUSART.o Display_LCD.o
-	$(Compiler) -g -Os -mmcu=$(VersionMCU) -c $(NameOfProgram).cpp
-	$(Compiler) -g -mmcu=$(VersionMCU) -o $(NameOfProgram).elf $(NameOfProgram).o Config_Interrupts.o IODataUSART.o Display_LCD.o
-	avr-objcopy -j .text -j .data -O ihex $(NameOfProgram).elf $(NameOfProgram).hex
+	$(CommandForCleaning) $(FolderOfBuilding)/$(NameOfProgram).elf $(FolderOfBuilding)/$(NameOfProgram).hex $(OBJECTS)
