@@ -5,14 +5,15 @@
     #define SizeOfBuffer 128
 #endif
 
+enum States {
+    FREE, LOCKED
+};
+
 struct Stream_Buffer {
     char Stack[SizeOfBuffer];
     unsigned char IndexOfNextElement;
     char Descriptor;
-    enum States {
-        FREE, LOCKED
-    } StateOfBuffer;
-
+    enum States StateOfBuffer;
     Stream_Buffer() {
         *Stack = 0;
         IndexOfNextElement = 0;

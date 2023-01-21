@@ -15,6 +15,7 @@ int main(void) {
     ConfigureUSART();
     ConfigureDisplayLCD();
     EnableGlobalInterrupts();
+    extern Stream_Buffer Buffer;
     while(true) {
         
     }

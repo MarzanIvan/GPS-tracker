@@ -10,6 +10,8 @@ void Send4BitsToLCD( unsigned char data ) {
     PORTD &= 0b00001111;
 }
 
+short unsigned int X_PositionOfCursorOfLCD, Y_PositionOfCursorOfLCD = 0;
+
 void SendBiteToLCD( unsigned int data, ModesSending ModeSending ) {
     SetCharacterDisplayPositionOnLCD(X_PositionOfCursorOfLCD, Y_PositionOfCursorOfLCD);
     
