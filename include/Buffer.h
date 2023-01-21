@@ -48,6 +48,7 @@ inline bool UnlockBuffer(char UnlockerDescriptor) {
     if (UnlockerDescriptor != Descriptor) {
         return false;
     }
+    Descriptor = 0;
     StateOfBuffer = FREE; 
     return true;
 }

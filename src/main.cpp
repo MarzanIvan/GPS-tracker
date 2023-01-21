@@ -1,4 +1,4 @@
-#define F_CPU 8000000UL
+#define F_CPU 1000000UL
 
 #ifndef __AVR_ATmega328P__
     #define __AVR_ATmega328P__
@@ -11,12 +11,22 @@
 
 int main(void) {
     ConfigurePorts();
-    SetSpeedUSART(12);
-    ConfigureUSART();
     ConfigureDisplayLCD();
+    SetSpeedUSART(12);//9600 bps 0.2% error with double speed
+    ConfigureUSART();
     EnableGlobalInterrupts();
     extern Stream_Buffer Buffer;
+    char Descriptor = 0x02;
+    char *Data = 0;
     while(true) {
+        if (Buffer.LockBuffer(Descriptor)) {
+            if (Data = Buffer.PullAll()) {
+                SendStringToLCD(Data);
+                *Buffer.Stack = '\0';
+                Buffer.IndexOfNextElement = 0;
+                Buffer.UnlockBuffer(Descriptor);
+            }
+        }
         
     }
     return 0;

@@ -7,7 +7,7 @@ FolderOfSourceCode = src
 FolderOfHeaders = include
 CommandForCleaning = rm
 
-SourceCode = main.cpp Config_Interrupts.cpp IODataUSART.cpp Display_LCD.cpp Buffer.cpp
+SourceCode = main.cpp Config_Interrupts.cpp IODataUSART.cpp Display_LCD.cpp
 SOURCE = $(addprefix $(FolderOfSourceCode)/,$(SourceCode))
 OBJECTS = $(addprefix $(FolderOfBuilding)/, $(SourceCode:.cpp=.o))
 

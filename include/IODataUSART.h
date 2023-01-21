@@ -48,7 +48,7 @@ inline void DoubleTransmissionSpeedUSART() {
 
 inline void ConfigureIO_USART() {
     USART_ControlAndStatusRegisterC |= USART_SynchronousModeEnableBits;
-    USART_ControlAndStatusRegisterC |= (USART_ValueToEnableTwoStopBits << USART_StopBitsSelectBit);
+    USART_ControlAndStatusRegisterC &= ~(1 << USART_StopBitsSelectBit);
     USART_ControlAndStatusRegisterC |= USART_BitsToEnable8BitsSizeOfBaud;
 } 
 
