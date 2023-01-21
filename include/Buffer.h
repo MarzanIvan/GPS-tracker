@@ -24,7 +24,7 @@ struct Stream_Buffer {
         
     }
 
-inline bool Stream_Buffer::Push(char Letter) {
+inline bool Push(char Letter) {
     if (IndexOfNextElement < SizeOfBuffer) {
         Stack[IndexOfNextElement++] = Letter;
         Stack[IndexOfNextElement] = '\0';
@@ -35,7 +35,7 @@ inline bool Stream_Buffer::Push(char Letter) {
     }
 }
 
-inline char *Stream_Buffer::PullAll() {
+inline char *PullAll() {
     if (IndexOfNextElement > 0) {
         return Stack;
     }
@@ -44,7 +44,7 @@ inline char *Stream_Buffer::PullAll() {
     }
 }
 
-inline bool Stream_Buffer::UnlockBuffer(char UnlockerDescriptor) {
+inline bool UnlockBuffer(char UnlockerDescriptor) {
     if (UnlockerDescriptor != Descriptor) {
         return false;
     }
@@ -52,7 +52,7 @@ inline bool Stream_Buffer::UnlockBuffer(char UnlockerDescriptor) {
     return true;
 }
 
-inline bool Stream_Buffer::LockBuffer(char LockerDescriptor) {
+inline bool LockBuffer(char LockerDescriptor) {
     if (StateOfBuffer != FREE) {
         return false;
     }
@@ -61,7 +61,7 @@ inline bool Stream_Buffer::LockBuffer(char LockerDescriptor) {
     return true;
 }
 
-inline bool Stream_Buffer::GetResponceToUseBuffer( char DescriptorOfUser) {
+inline bool GetResponceToUseBuffer( char DescriptorOfUser) {
     if (DescriptorOfUser == Descriptor) {
         return true;
     } else {
