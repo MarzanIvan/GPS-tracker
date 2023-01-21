@@ -16,6 +16,8 @@ enum ModesSending {
     COMMAND, DATA
 };
 
+extern short unsigned int X_PositionOfCursorOfLCD,Y_PositionOfCursorOfLCD = 0;
+
 void SendBiteToLCD( unsigned int data, ModesSending ModeSending );
 
 void SendStringToLCD( const char *String );

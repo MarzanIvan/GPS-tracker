@@ -11,6 +11,8 @@ void Send4BitsToLCD( unsigned char data ) {
 }
 
 void SendBiteToLCD( unsigned int data, ModesSending ModeSending ) {
+    SetCharacterDisplayPositionOnLCD(X_PositionOfCursorOfLCD, Y_PositionOfCursorOfLCD);
+    
     if (ModeSending == COMMAND) {
         PORTD &= ~(1 << PORTD2);
     } else {
@@ -18,7 +20,18 @@ void SendBiteToLCD( unsigned int data, ModesSending ModeSending ) {
     }
     Send4BitsToLCD(data >> 4);
     Send4BitsToLCD(data);
-
+    
+    if ( X_PositionOfCursorOfLCD < MaxSizeOfStringOfLCD) {
+        X_PositionOfCursorOfLCD++;
+    } 
+    else if (Y_PositionOfCursorOfLCD < MaxIndexOfStringOfLCD) {
+        Y_PositionOfCursorOfLCD++;
+        X_PositionOfCursorOfLCD = 0;
+    }
+    else {
+        Y_PositionOfCursorOfLCD = 0;
+        X_PositionOfCursorOfLCD = 0;
+    }
 }
 
 void SetCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int Y ) {
