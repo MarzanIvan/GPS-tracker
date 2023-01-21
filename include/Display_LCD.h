@@ -1,5 +1,5 @@
-#ifndef DISPLAY_LCD_HPP
-    #define DISPLAY_LCD_HPP
+#ifndef DISPLAY_LCD_H
+    #define DISPLAY_LCD_H
 
 #define F_CPU 8000000UL
 
@@ -12,7 +12,7 @@
 
 void Send4BitsToLCD( unsigned char data );
 
-enum ModesSending{
+enum ModesSending {
     COMMAND, DATA
 };
 
@@ -22,7 +22,8 @@ void SendStringToLCD( const char *String );
 
 void SetCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int Y );
 
-void SetNextCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int Y );
+#define MaxSizeOfStringOfLCD 15
+#define MaxIndexOfStringOfLCD 1
 
 inline void ConfigureDisplayLCD() {
     _delay_ms(15);
@@ -41,6 +42,6 @@ inline void ConfigureDisplayLCD() {
     SendBiteToLCD(0b00000110, COMMAND);
 }
 
-void ClearLCDDisplay();
+void ClearLCD();
 
 #endif

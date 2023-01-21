@@ -1,5 +1,5 @@
 
-#include "../include/IODataUSART.hpp"
+#include "../include/IODataUSART.h"
 
 void TransmitSymbol_By_USART( unsigned char Symbol ) {
     while( !(USART_ControlAndStatusRegisterA & (1 << USART_DataRegisterEmptyFlag)) );

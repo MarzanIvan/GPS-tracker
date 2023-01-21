@@ -1,18 +1,20 @@
-#include "../include/Config_Interrupts.hpp"
-#include "../include/Display_LCD.hpp"
-#include "../include/IODataUSART.hpp"
+#include "../include/Config_Interrupts.h"
+#include "../include/Display_LCD.h"
+#include "../include/IODataUSART.h"
 
 short unsigned int X,Y = 0;
 
 ISR(USART_RX_vect) {
     SetCharacterDisplayPositionOnLCD(X,Y);
     SendBiteToLCD(USART_DataRegister, DATA);  
-    if (X < 15) {
+    if ( X < MaxSizeOfStringOfLCD) {
         X++;
-    } else if (Y < 1) {
+    } 
+    else if (Y < MaxIndexOfStringOfLCD) {
         Y++;
         X = 0;
-    }  else {
+    }
+    else {
         Y = 0;
         X = 0;
     }

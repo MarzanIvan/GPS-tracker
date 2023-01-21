@@ -1,9 +1,9 @@
-#ifndef MAIN_HPP
-#define MAIN_HPP
+#ifndef MAIN_H
+#define MAIN_H
 
-#include "IODataUSART.hpp"
-#include "Config_Interrupts.hpp"
-#include "Display_LCD.hpp"
+#include "IODataUSART.h"
+#include "Config_Interrupts.h"
+#include "Display_LCD.h"
 
 inline void ConfigureUSART() {
     EnableIO_USART();
@@ -15,10 +15,6 @@ inline void ConfigureUSART() {
 inline void ConfigurePorts() {
     DDRD = 0b11111110;
     PORTD = 0;
-}
-
-inline void EnableGlobalEnterrupt() {
-    SREG |= (1<<7);
 }
 
 #endif

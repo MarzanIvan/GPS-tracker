@@ -1,12 +1,10 @@
-#include "../include/Display_LCD.hpp"
+#include "../include/Display_LCD.h"
 
 void Send4BitsToLCD( unsigned char data ) {
-    PORTD |= (1 << PORTB3);
-
+    PORTD |= (1 << PORTD3);
     _delay_us(50);
     PORTD &= 0b00001111;
     PORTD |= (data << 4);
-
     PORTD &= 0b11110111;
     _delay_us(50);
     PORTD &= 0b00001111;
@@ -14,12 +12,13 @@ void Send4BitsToLCD( unsigned char data ) {
 
 void SendBiteToLCD( unsigned int data, ModesSending ModeSending ) {
     if (ModeSending == COMMAND) {
-        PORTD &= 0b11111011;
+        PORTD &= ~(1 << PORTD2);
     } else {
-        PORTD |= (1 << 2);
+        PORTD |= (1 << PORTD2);
     }
     Send4BitsToLCD(data >> 4);
     Send4BitsToLCD(data);
+
 }
 
 void SetCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int Y ) {
@@ -27,25 +26,7 @@ void SetCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int 
     SendBiteToLCD(Adress, COMMAND);
 }
 
-#define MaxSizeOfStringOfLCD 15
-#define MaxIndexOfStringOfLCD 1
-
-void SetNextCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int Y ) {
-    if (X < MaxSizeOfStringOfLCD) {
-        X++;
-    } 
-    else if (Y < MaxIndexOfStringOfLCD) {
-        Y++;
-        X = 0;
-    }
-    else {
-        Y = 0;
-        X = 0;
-    }
-    SetCharacterDisplayPositionOnLCD(X,Y);
-}
-
-void ClearLCDDisplay(void) {
+void ClearLCD(void) {
     SendBiteToLCD(0b00000001, COMMAND);
     _delay_us(1500);
 }

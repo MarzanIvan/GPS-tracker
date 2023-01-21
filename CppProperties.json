@@ -7,6 +7,7 @@
       "name": "Mingw64",
       "includePath": [
         "${env.INCLUDE}",
+        "${env.PATH}",
         "${workspaceRoot}\\**",
         "C:\\WinAVR-20100110\\avr\\include",
         "C:\\WinAVR-20100110\\bin"
