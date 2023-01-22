@@ -6,9 +6,10 @@
 Stream_Buffer Buffer;
 
 ISR(USART_RX_vect) {
+    char Data = UDR0;
     char Descriptor = 0x01;
     if (Buffer.LockBuffer(Descriptor)) {
-        Buffer.Push(UDR0);
+        Buffer.Push(Data);
         Buffer.UnlockBuffer(Descriptor);
     }
 }

@@ -16,7 +16,7 @@ enum ModesSending {
     COMMAND, DATA
 };
 
-void SendBiteToLCD( unsigned int data, ModesSending ModeSending );
+void SendBiteToLCD( char data, ModesSending ModeSending );
 
 void SendStringToLCD( const char *String );
 

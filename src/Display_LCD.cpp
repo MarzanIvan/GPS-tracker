@@ -12,7 +12,7 @@ void Send4BitsToLCD( unsigned char data ) {
 
 short unsigned int X_PositionOfCursorOfLCD = 0, Y_PositionOfCursorOfLCD = 0;
 
-void SendBiteToLCD( unsigned int data, ModesSending ModeSending ) {
+void SendBiteToLCD( char data, ModesSending ModeSending ) {
     if (ModeSending == COMMAND) {
         PORTD &= ~(1 << PORTD2);
     } else {

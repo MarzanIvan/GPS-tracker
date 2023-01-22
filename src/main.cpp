@@ -19,15 +19,17 @@ int main(void) {
     char Descriptor = 0x02;
     char *Data = 0;
     while(true) {
+        _delay_ms(100);
         if (Buffer.LockBuffer(Descriptor)) {
             if (Data = Buffer.PullAll()) {
+                ClearLCD();
                 SendStringToLCD(Data);
                 *Buffer.Stack = '\0';
                 Buffer.IndexOfNextElement = 0;
                 Buffer.UnlockBuffer(Descriptor);
             }
         }
-        
+        _delay_ms(100);
     }
     return 0;
 }
