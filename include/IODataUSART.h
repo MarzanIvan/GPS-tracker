@@ -35,7 +35,7 @@ inline void SetSpeedUSART( unsigned int SpeedIO ) {
 }
 
 inline void EnableIO_USART() {
-    USART_ControlAndStatusRegisterB = (1 << USART_ReceiverEnableBit) | (1 << USART_TransmitterEnableBit);
+    USART_ControlAndStatusRegisterB = (1 << USART_ReceiverEnableBit) | (1 << USART_TransmitterEnableBit) | (1 << UDRIE0);
 }
 
 inline void EnableInterruptReadUSART() {

@@ -13,3 +13,14 @@ ISR(USART_RX_vect) {
         Buffer.UnlockBuffer(Descriptor);
     }
 }
+
+ISR(USART_UDRE_vect) {
+    char Descriptor = 0x03;
+    char* Data = 0;
+    if (Buffer.LockBuffer(Descriptor)) {
+        Data = Buffer.PullAll();
+
+        *Buffer.Stack = '\0';
+        Buffer.IndexOfNextElement = 0;
+    }
+}

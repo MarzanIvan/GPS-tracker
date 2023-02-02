@@ -2,7 +2,7 @@
     #define BUFFER_H
 
 #ifndef SizeOfBuffer
-    #define SizeOfBuffer 128
+    #define SizeOfBuffer 255
 #endif
 
 enum States {
