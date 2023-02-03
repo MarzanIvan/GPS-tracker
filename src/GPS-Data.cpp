@@ -17,10 +17,10 @@ bool DoesStringContainSubString( const char *String, const char* SubString) {
 	}
 }
 
-char** ParseNMEAData(const char *GPS_NMEA_Data,char *Output_GPSData[], int SizeOfPostfix, int SizeOfFields) {
+char** ParseNMEAData(const char *GPS_NMEA_Data, char *Output_GPSData[], unsigned char SizeOfPostfix, unsigned char AmountOfFields) {
 	GPS_NMEA_Data += (4 + SizeOfPostfix);
-	char GPS_GGA_NMEA_Data[SizeOfFields][10];
-	for (unsigned int i = 0; i < SizeOfFields; i++) {
+	char GPS_GGA_NMEA_Data[AmountOfFields][10];
+	for (unsigned int i = 0; i < AmountOfFields; i++) {
 		char *TempStr = Output_GPSData[i];
 		while (*GPS_NMEA_Data != ',' && *GPS_NMEA_Data != 0) {
 			*TempStr = *GPS_NMEA_Data;
