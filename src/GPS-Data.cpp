@@ -22,7 +22,7 @@ char** ParseNMEAData(const char *GPS_NMEA_Data, char *Output_GPSData[], unsigned
 	char GPS_GGA_NMEA_Data[AmountOfFields][10];
 	for (unsigned int i = 0; i < AmountOfFields; i++) {
 		char *TempStr = Output_GPSData[i];
-		while (*GPS_NMEA_Data != ',' && *GPS_NMEA_Data != 0) {
+		while (*GPS_NMEA_Data > 44) { //(ASCII table): 44 (dec) of ",", 42 (dec) of "*"
 			*TempStr = *GPS_NMEA_Data;
 			GPS_NMEA_Data++;
 			TempStr++;
