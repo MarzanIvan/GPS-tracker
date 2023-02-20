@@ -6,6 +6,7 @@
 
 #include "../include/main.h"
 #include "../include/Buffer.h"
+#include "../include/GPS-Data.h"
 #include <avr/io.h>
 #include <util/delay.h>
 
@@ -16,10 +17,21 @@ int main(void) {
     ConfigureUSART();
     EnableGlobalInterrupts();
     extern Stream_Buffer Buffer;
-    char Descriptor = 0x02;
+    extern GPSData GPSDataStruct;
+    char Descriptor = 0x04;
     char *Data = 0;
     while(true) {
-        
+        if (IsNMEADataWasTransmitted(Buffer.Stack) && Buffer.LockBuffer(Descriptor)) {
+            GPSDataStruct.ParseNMEAData( Buffer.PullAll(), 
+                                         FindPositionOfFirstEntryOfSubString(Buffer.Stack, "GGA"),
+                                         3, 
+                                         14 );
+            ClearLCD();
+            SendStringToLCD((char*)GPSDataStruct.Latitude);
+            *Buffer.Stack = '\0';
+            Buffer.IndexOfNextElement = 0;
+            Buffer.UnlockBuffer(Descriptor);
+        }
     }
     return 0;
 }

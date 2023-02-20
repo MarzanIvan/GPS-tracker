@@ -2,8 +2,10 @@
 #include "../include/Buffer.h"
 #include "../include/Display_LCD.h"
 #include "../include/IODataUSART.h"
+#include "../include/GPS-Data.h"
 
 Stream_Buffer Buffer;
+GPSData GPSDataStruct;
 
 ISR(USART_RX_vect) {
     char Data = UDR0;
@@ -15,12 +17,5 @@ ISR(USART_RX_vect) {
 }
 
 ISR(USART_UDRE_vect) {
-    char Descriptor = 0x03;
-    char* Data = 0;
-    if (Buffer.LockBuffer(Descriptor)) {
-        Data = Buffer.PullAll();
-
-        *Buffer.Stack = '\0';
-        Buffer.IndexOfNextElement = 0;
-    }
+    
 }

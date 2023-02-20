@@ -42,6 +42,9 @@ void SetCharacterDisplayPositionOnLCD( short unsigned int X, short unsigned int 
 void ClearLCD(void) {
     SendBiteToLCD(0b00000001, COMMAND);
     _delay_us(1500);
+    Y_PositionOfCursorOfLCD = 0;
+    X_PositionOfCursorOfLCD = 0;
+    SetCharacterDisplayPositionOnLCD(0,0);
 }
 
 void SendStringToLCD( const char *ElementString ) {
